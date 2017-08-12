@@ -1,3 +1,4 @@
+# -*- coding: UTF-8 -*-
 import csv
 import collections
 import arff
@@ -5,6 +6,7 @@ import itertools
 import numpy as np
 import pandas as pd
 import scipy.stats as st
+
 
 class DataPreProcessing:
     #extracao da planilha de dados
@@ -43,6 +45,7 @@ class DataPreProcessing:
 
         # print len(cleansedSet)
 
+
         classes = self.retrieveClasses("pp5i_train_class.txt")
 
         cleansedSet.append(classes)
@@ -57,22 +60,37 @@ class DataPreProcessing:
         csv.writer(open("./train-transposed.csv", "wb")).writerows(a)
 
         dadosLimpos = pd.read_csv('./train-transposed.csv');
-        genes = dadosLimpos.columns[:-1]
-        classes = pd.Series(dadosLimpos['class'].values.ravel()).unique()
+        genes = dadosLimpos.columns[:-1] #nome dos genes
+        classList = pd.Series(dadosLimpos['Class'].values.ravel()).unique() #só para pegar o nome das classes
 
 
         genesTvalues = {}
-        for classe in classes:
+        for className in classList:
             tgenes = []
             for gene in genes:
-                sample1 = dadosLimpos[dadosLimpos['class'] == classe][gene]
-                sample2 = dadosLimpos[dadosLimpos['class'] != classe][gene]
+                sample1 = dadosLimpos[dadosLimpos['Class'] == className][gene]
+                sample2 = dadosLimpos[dadosLimpos['Class'] != className][gene]
                 t = st.ttest_ind(sample1,sample2,equal_var=False)
-                tgenes.append(t[0])
-            genesTvalues[classe] = pd.Series(tgenes,index=genes)
-        genesTvaluesDf = pd.DataFrame(genesTvalues)
+                tgenes.append(t[0]) #achamos que é um valor resultante
+            genesTvalues[className] = pd.Series(tgenes,index=genes) #achamos que é o bind dos valores p/ o gene
+        genesTvaluesDf = pd.DataFrame(genesTvalues) #exibe o conteúdo numa estrutura tabular
 
-        print genesTvalues
+        subsets = [2,4,6,8,10,12,20,25,30]
+
+        for setSize in subsets:
+            topArray = []
+            for className in classList:
+                topArray.append(genesTvaluesDf.sort_values(className, ascending=False).index[:setSize])
+
+            topGenes = list(set(topArray[0]) | set(topArray[1]) | set(topArray[2]) | set(topArray[3]) | set(topArray[4]))
+
+            topGenes.append('Class')
+
+            trainTopN = dadosLimpos[topGenes]
+            print trainTopN
+            # sortedTrainTopN =  trainTopN.reindex(np.random.permutation(trainTopN.index))
+            trainTopN.to_csv('./train_top' + str(setSize) + '.csv', index=False)
+
 
         # columnSet = zip(cleansedSet)[1:]
         # for column in columnSet:
@@ -86,13 +104,13 @@ class DataPreProcessing:
 
     #separa rotulos dos dados e devolve lista contendo (rotulo, conteudo)
     def collectLabels(self, extractedData):
-        dataValues = ["class"]
+        dataValues = ["Class"]
         dataValues += ['at' + str(index+1) for index in range(7070)]
         return dataValues #[(labels[index],extractedData[index]) for index in range(1,len(extractedData) - 2)]
 
     def retrieveClasses(self, inputFileWithClasses):
         with open(inputFileWithClasses, 'rb') as f_in:
-            header = ["class"]
+            header = ["Class"]
             content = f_in.read()
             content = str(content).replace("\r", " ").replace('\n', '\n') #removendo caracteres inuteis
             content = content.split('\n') #separa linhas
@@ -102,10 +120,11 @@ class DataPreProcessing:
 if __name__ == "__main__":
     dataPre = DataPreProcessing();
     classes = dataPre.retrieveClasses("pp5i_train_class.txt") # rotulos de cada coluna
-    dataTraining = dataPre.extractData("pp5i_train.gr.csv", classes)
-    # dataTest = dataPre.extractData("pp5i_test.gr.csv")
-    labeledDataTraining = dataPre.collectLabels(dataTraining) #conjunto de treinamento
+    # dataTraining = dataPre.extractData("pp5i_train.gr.csv", classes)
+    dataTest = dataPre.extractData("pp5i_test.gr.csv", classes)
+    # labeledDataTraining = dataPre.collectLabels(dataTraining) #conjunto de treinamento
     # print labeledDataTraining
     # labeledDataTest = dataPre.collectLabels(dataTest) # conjunto de teste
+
 
     arff.dump('result.arff', dataTraining, relation="GenicExpression", names= labeledDataTraining)
