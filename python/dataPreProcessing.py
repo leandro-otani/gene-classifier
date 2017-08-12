@@ -20,8 +20,8 @@ class DataPreProcessing:
         dadosTeste = rawset.transpose()
         newColumns = dadosTeste[:1]
         dadosTeste.columns = newColumns.values.flat;
-        baseSet = dadosTeste.drop('SNO')
-
+        dadosTeste = dadosTeste.drop("SNO")
+        print dadosTeste
 
         #threshold
         # for column in rawset:
