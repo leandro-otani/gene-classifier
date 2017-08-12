@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<meta name="author" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Logger Documentation</title>
+	<link rel="stylesheet" type="text/css" href="milligram.min.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Slab">
+	<style type="text/css">
+		body { font-family: 'Roboto Slab', serif; line-height: 1.9em; }
+		h3, h4 { margin-bottom: 0.4em; }
+		h5 { margin-bottom: 0.2em; }
+		a { color: #DE4DA2; text-decoration: underline; }
+		.container { max-width: 80rem; margin-bottom: 4.5rem; }
+		.example-warning pre { border-left: 0.5rem solid #FFE158; border-right: 0.5rem solid #FFE158; font-size: 1.2em; }
+		.example span { border-radius: 0; display: block; padding: 1rem 1.5rem; white-space: pre; font-family: 'Roboto Slab', serif; font-size: 0.8em; }
+		.code, code { font-family: monospace; }
+		.code { font-size: 1.2em; }
+		.purple { color: #5C1983; }
+		.green { color: #9BB85D; }
+		#contents ul { margin-top: 0.3rem; }
+		#contents ul ul { margin-bottom: 0.45rem; }
+		#contents ul li { margin: 0.3rem; }
+		#usage ul { margin-left: 30px; margin-top: 15px; }
+		#considerations ul { list-style-type: none; }
+		#considerations li { width: 50%; float: left; }
+		#considerations li:nth-child(1) { padding-right: 15px; }
+		#considerations li:nth-child(2) { padding-left: 15px; }
+		#considerations figure { margin: 0; }
+		#considerations figure img { width: 100%; }
+		footer { clear: both; margin-top: 20px; }
+	</style>
+</head>
+<body>
+	<main class="wrapper">
+		<header class="header container" id="header">
+			<h1 class="center">Documentation</h1>
+		</header>
+		<section class="container" id="intro">
+		</section>
+		<section class="container" id="contents">
+			<h3>Table of contents</h3>
+			<ul>
+				<li>
+					<a href="#quick_setup">Quick Setup</a>
+					<ul>
+						<li><a href="#quick_online">Online mode</a></li>
+						<li><a href="#quick_offline">Offline mode</a></li>
+					</ul>
+				</li>
+				<li><a href="#considerations">Considerations</a></li>
+			</ul>
+		</section>
+		<section class="container" id="quick_setup">
+			<h3>Quick setup</h3>
+			<p>You can also check the <a href="#detailed_setup">detailed setup</a>.</p>
+			<h4 id="quick_online">On-line mode</h4>
+			<div class="example">
+				<pre><code>sudo dnf install python2 python-pip python-wheel python-setuptools<br/>sudo pip install pynput Pillow watchdog python-xlib<br/>find ./ -name "*.sh" -exec chmod +x {} \;</code></pre>
+			</div>
+      <div class="example example-warning">
+        <pre><span>Please make sure you have installed the required system packages before proceeding.</span></pre>
+      </div>
+
+		</section>
+		<section class="container" id="functionality">
+			<h4 id="keyboard_watcher">Keyboard watcher</h4>
+			<p>The Keyboard watcher is fairly simple, registering default and special characters key press. All data is exclusively stored in <span class="green code">keyboardlogbook.csv</span>, inside the <span class="purple code">logs</span> folder.</p>
+			<table>
+				<thead>
+					<tr>
+						<th>Attribute name</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>timestamp</td>
+						<td>A 13 digits unix epoch value, representing the time when input was logged</td>
+					</tr>
+					<tr>
+						<td>key</td>
+						<td>The pressed key</td>
+					</tr>
+					<tr>
+						<td>type</td>
+						<td>The key type according to keyboard input layout.</td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		<section class="container" id="considerations">
+			<h3>Considerations</h3>
+			<ul>
+				<li>
+					<figure>
+						<img src="images/no-blur-error.png"/>
+						<figcaption>
+							capt
+						</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<img src="images/blur-error.png"/>
+						<figcaption>
+							capt
+						</figcaption>
+					</figure>
+				</li>
+			</ul>
+		</section>
+		<!-- <footer class="container">
+			[FOOTER]
+		</footer> -->
+	</main>
+</body>
+</html>
