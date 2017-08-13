@@ -6,7 +6,7 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Logger Documentation</title>
+	<title>Documentação do projeto final - Mineração de dados genéticos</title>
 	<link rel="stylesheet" type="text/css" href="milligram.min.css">
 	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Slab">
 	<style type="text/css">
@@ -44,15 +44,75 @@
 		<section class="container" id="contents">
 			<h3>Table of contents</h3>
 			<ul>
+				<li><a href="#introducao">Introdução</a></li>
 				<li>
-					<a href="#quick_setup">Quick Setup</a>
+					<a href="#metodologia">Metodologia</a>
 					<ul>
-						<li><a href="#quick_online">Online mode</a></li>
-						<li><a href="#quick_offline">Offline mode</a></li>
+						<li><a href="#preprocessamento">Pré processamento</a></li>
+						<li><a href="#atributos">Seleção de atributos</a></li>
+						<li><a href="#classificador">Seleção dos melhores classificadores</a></li>
 					</ul>
 				</li>
-				<li><a href="#considerations">Considerations</a></li>
-			</ul>
+				<li>
+					<a href="#results">Results</a>
+					<ul>
+						<li><a href="#bestclassifiers">Best classifiers</a></li>
+						<li><a href="#parameters">Parameters variatons</a></li>
+					</ul>
+				</li>
+			<li><a href="#conclusions">Conclusions</a></li>
+		</ul>
+		</section>
+		<section class="container" id="introducao">
+		<h3>Introdução</h3>
+			<p>O objetivo deste trabalho é comparar diferentes algoritmos e técnicas de mineração de dados para 
+				classificar doenças com base em dados de expressão gênica.
+			</p>
+			<p>Os dados utilizados são compostos por 7070 genes e 69 amostras na base de treino e 23 amostras na base de treino.</p>
+			
+		</section>
+		
+		
+		<section class="container" id="metodologia">
+			<h3>Metodologia</h3>
+			<section class="container"id="preprocessamento">
+				<h4>Pré processamento</h4>
+				<p>O Pré preprocessamento dos dados é necessário uma vez que a base de dados possui muitos atributos e
+				os dados estão em um arquivo do tipo CSV dispostos no formato padrão de saída de Microarray, ou seja,
+				as linhas representam os genes e cada uma das colunas é uma das amostras.
+				</p>
+			</section>
+			
+			<section class="container"id="atributos">
+				<h4>Seleção de atributos</h4>
+				<p>Inicialmente aplicou-se um threshold tanto nos dados de treino quanto nos dados de teste
+					para que todos os valores tenham valor máximo de 16000 e valor mínimo de 20.
+				</p>
+				<p>O próximo passo foi remover dos dados de treino os genes com fold differences menor que dois,
+					uma vez que dados com pouca variação não tem importância biológica neste contexto e com o intuito
+					de aumentar a performance retirando atributos irrelevantes.
+				</p>
+				<p>Para gerar subconjuntos com menos genes para fins de teste, foi calculado o T-value para cada classe.
+					Com os valores calculados, foram selecionados os maiores T-values para 2, 4, 6, 8, 10, 12, 15, 20, 25 e 30
+					genes combinando-os para formar os subconjuntos.
+				</p>
+				
+				<p>Para os subconjuntos gerados, foram criados arquivos CSV com os atributos selecionados e a coluna do atributo 
+				classe adicionada ao final. Os dados foram então transpostos para que cada gene fique em uma coluna. Esses arquivos
+				CSV foram então convertido em arquivos do tipo ARFF utilizando o ARFFViewer do Weka.
+				</p>
+			</section>
+			
+		</section>
+		
+		<section class="container" id="results">
+			
+		</section>
+		
+		<section class="container" id="conclusions">
+			<h3>conclusions</h3>
+			<p>The goal of this work is to compare different algorithms and techniques of data mining to classify disease using gene expression data</p>
+			
 		</section>
 		<section class="container" id="quick_setup">
 			<h3>Quick setup</h3>
