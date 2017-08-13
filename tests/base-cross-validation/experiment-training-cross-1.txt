@@ -1,0 +1,34 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 3 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   10
+Resultsets: 7
+Confidence: 0.05 (two tailed)
+Sorted by:  Area_under_ROC
+Date:       8/13/17 12:54 AM
+
+
+Dataset                   (1) rules.Ze | (2) bayes (3) lazy.I (4) trees (5) trees (6) lazy.K (7) functi
+-------------------------------------------------------------------------------------------------------
+train_top10               (10)   56.67 |   91.19 v   100.00 v   82.62 v   98.57 v   100.00 v   100.00 v
+train_top4                (10)   56.67 |   95.71 v    98.57 v   68.10     97.14 v   100.00 v    97.14 v
+train_top30               (10)   56.67 |   95.71 v    95.71 v   81.19 v   98.57 v    65.48 v   100.00 v
+train_top25               (10)   56.67 |   95.71 v   100.00 v   81.19 v   97.14 v    91.19 v   100.00 v
+train_top20               (10)   56.67 |   92.62 v   100.00 v   81.19 v   97.14 v   100.00 v   100.00 v
+train_top2                (10)   56.67 |   95.71 v    97.14 v   72.38     98.57 v    98.57 v    95.71 v
+train_top6                (10)   56.67 |   94.29 v    97.14 v   86.90 v   97.14 v   100.00 v    98.57 v
+train_top12               (10)   56.67 |   91.19 v    98.57 v   81.19 v   98.57 v   100.00 v   100.00 v
+train_top15               (10)   56.67 |   91.19 v   100.00 v   81.19 v   98.57 v    98.57 v   100.00 v
+train_top8                (10)   56.67 |   92.86 v    98.57 v   86.90 v   98.57 v   100.00 v    98.57 v
+-------------------------------------------------------------------------------------------------------
+                               (v/ /*) |  (10/0/0)   (10/0/0)   (8/2/0)  (10/0/0)   (10/0/0)   (10/0/0)
+
+
+Key:
+(1) rules.ZeroR '' 48055541465867954
+(2) bayes.NaiveBayes '' 5995231201785697655
+(3) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(4) trees.J48 '-C 0.25 -M 2' -217733168393644444
+(5) trees.LMT '-I -1 -M 15 -W 0.0' -1113212459618104943
+(6) lazy.KStar '-B 20 -M a' 332458330800479083
+(7) functions.MultilayerPerceptron '-L 0.3 -M 0.2 -N 500 -V 0 -S 0 -E 20 -H a' -5990607817048210779
+
