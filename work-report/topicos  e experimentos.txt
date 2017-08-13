@@ -1,0 +1,26 @@
+Coisas para fazer
+- Selecionar melhores algoritmos
+- Aplicar PCA antes de escolher melhores algoritmos (Ultimo)
+- Randomizar nos dados e ve se influencia
+- Selecionar folds usando metricas diferentes
+
+
+- Visualizacao 
+	- Acuracia por numero de atributos (genes)
+	- acuracia por classificador 
+	- Classificador por tempo
+	- Grafico do resultado médio
+	
+	
+	
+- Introduction and data structure
+- Methodology
+	- Preprocessing (citar inicio com javascript x python, passos posteriores melhor no python)
+	- attributes selection
+	- Classifier selection
+		IBK, LMT, Perceptron
+
+- Results
+	- Best classifiers 
+	- Parameters variation
+
