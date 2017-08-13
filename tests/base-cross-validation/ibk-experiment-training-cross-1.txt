@@ -1,0 +1,31 @@
+Tester:     weka.experiment.PairedCorrectedTTester -G 4,5,6 -D 1 -R 2 -S 0.05 -result-matrix "weka.experiment.ResultMatrixPlainText -mean-prec 2 -stddev-prec 2 -col-name-width 0 -row-name-width 25 -mean-width 3 -stddev-width 2 -sig-width 1 -count-width 5 -print-col-names -print-row-names -enum-col-names"
+Analysing:  Percent_correct
+Datasets:   10
+Resultsets: 4
+Confidence: 0.05 (two tailed)
+Sorted by:  Area_under_ROC
+Date:       8/13/17 8:23 AM
+
+
+Dataset                   (1) lazy.IBk  | (2) lazy.I (3) lazy.I (4) lazy.I
+--------------------------------------------------------------------------
+train_top8                (10)    98.57 |    98.57      98.57      98.57  
+train_top2                (10)    97.14 |    97.14      97.14      97.14  
+train_top4                (10)    98.57 |   100.00     100.00      98.57  
+train_top12               (10)    98.57 |    98.57      98.57      98.57  
+train_top6                (10)    97.14 |    98.57      98.57      97.14  
+train_top30               (10)    95.71 |    97.14     100.00      98.57  
+train_top20               (10)   100.00 |   100.00     100.00     100.00  
+train_top15               (10)   100.00 |   100.00     100.00      98.57  
+train_top25               (10)   100.00 |    98.57     100.00     100.00  
+train_top10               (10)   100.00 |   100.00      98.57      98.57  
+--------------------------------------------------------------------------
+                                (v/ /*) |   (0/10/0)   (0/10/0)   (0/10/0)
+
+
+Key:
+(1) lazy.IBk '-K 1 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(2) lazy.IBk '-K 2 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(3) lazy.IBk '-K 4 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+(4) lazy.IBk '-K 3 -W 0 -A \"weka.core.neighboursearch.LinearNNSearch -A \\\"weka.core.EuclideanDistance -R first-last\\\"\"' -3080186098777067172
+
